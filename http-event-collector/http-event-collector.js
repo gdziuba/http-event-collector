@@ -24,7 +24,7 @@ module.exports = function(RED) {
 
 
         // Change to require("splunk-logging").Logger;
-        var SplunkLogger = require("/../node_modeules/splunk-bunyan-logger/index").Logger;
+        var SplunkLogger = require("/../node_modules/splunk-bunyan-logger/index").Logger;
 
 
         /**
