@@ -1,18 +1,5 @@
-/*
- * Copyright 2015 Splunk, Inc.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"): you may
- * not use this file except in compliance with the License. You may obtain
- * a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
- * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
- * License for the specific language governing permissions and limitations
- * under the License.
- */
+var bunyan = require("bunyan");
+var splunkBunyan = require("splunk-bunyan-logger");
 
 
 module.exports = function(RED) {
@@ -22,9 +9,6 @@ module.exports = function(RED) {
         var node = this;
         var myMessage = null;
 
-
-        // Change to require("splunk-logging").Logger;
-        var SplunkLogger = require("../node_modules/splunk-bunyan-logger/index").Logger;
 
 
         /**
@@ -37,15 +21,20 @@ module.exports = function(RED) {
         this.mySource = config.inputSource.toString();
         this.myIndex = config.inputIndex.toString();
 
-
-        // Token and URI data
-        var loggerConfig = {
+        var config = {
             token: this.myToken,
             url: this.myURI
         };
 
-        // Create a new logger
-        var Logger = new SplunkLogger(loggerConfig);
+        var splunkStream = splunkBunyan.createStream(config);
+
+        // Note: splunkStream must be set to an element in the streams array
+        var Logger = bunyan.createLogger({
+            name: "my logger",
+            streams: [
+                splunkStream
+            ]
+        });
 
         Logger.error = function(err, context) {
             // Handle errors here
@@ -63,12 +52,10 @@ module.exports = function(RED) {
                 myMessage = msg.payload
             }
 
-
-            // Define the payload to send to HTTP Event Collector
             var payload = {
                 // Data sent from previous node msg.payload
                 message : { payload: myMessage,
-                msgMetaData : msg
+                    msgMetaData : msg
                 },
                 // Metadata
                 metadata: {
@@ -81,41 +68,12 @@ module.exports = function(RED) {
                 severity: "info"
             };
 
-            // removes duplication of data
-
             delete payload.message.msgMetaData.payload;
 
             console.log("Sending payload", payload);
+            Logger.info(payload, "Chicken coup looks stable.");
 
-            /**
-             * Since maxBatchCount is set to 1 by default,
-             * calling send will immediately send the payload.
-             *
-             * The underlying HTTP POST request is made to
-             *
-             *     https://localhost:8088/services/collector/event/1.0
-             *
-             * with the following body
-             *
-             *     {
-             *         "source": "chicken coop",
-             *         "sourcetype": "httpevent",
-             *         "index": "main",
-             *         "host": "farm.local",
-             *         "event": {
-             *             "message": {
-             *                 "temperature": "70F",
-             *                 "chickenCount": 500
-             *             },
-             *             "severity": "info"
-             *         }
-             *     }
-             *
-             */
-            Logger.send(payload, function(err, resp, body) {
-                // If successful, body will be { text: 'Success', code: 0 }
-                console.log("Response from Splunk", body);
-            });
+
         });
     }
     RED.nodes.registerType("http-event-collector",HTTPEventCollector);
