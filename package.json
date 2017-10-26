@@ -1,0 +1,13 @@
+{
+  "name": "http-event-collector",
+  "version": "0.0.1",
+  "dependencies": {
+	"splunk-bunyan-logger": "splunk/splunk-bunyan-logger"
+  },
+
+  "node-red" : {
+    "nodes": {
+      "http-event-collector": "http-event-collector/http-event-collector.js"
+    }
+  }
+}
