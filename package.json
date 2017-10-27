@@ -2,7 +2,8 @@
   "name": "http-event-collector",
   "version": "0.0.1",
   "dependencies": {
-	"splunk-bunyan-logger": "splunk/splunk-bunyan-logger"
+	  "splunk-bunyan-logger": "splunk/splunk-bunyan-logger",
+	  "bunyan": "trentm/node-bunyan"
   },
 
   "node-red" : {
