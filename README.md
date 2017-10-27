@@ -10,9 +10,12 @@ Wanted to make an easy avenue to publish data into Splunk through Node-Red.
 
 The easiest way to install is through the Node-Red Palette Manager that can be found in the menu on the top right hand corner of the Node-Red ui.
 
+### Manual install with npm
+
 ```sh
 npm install -g node-red-contrib-http-event-collector
 ```
+### Install from source
 From github:
 Navigate to the your home directory on linux is is ~/.node-red/node-modules
 ```sh
