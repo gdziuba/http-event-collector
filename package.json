@@ -1,6 +1,6 @@
 {
-  "name": "http-event-collector",
-  "version": "0.0.1",
+  "name": "node-red-http-event-collector",
+  "version": "0.0.2",
   "dependencies": {
 	  "splunk-bunyan-logger": "splunk/splunk-bunyan-logger",
 	  "bunyan": "trentm/node-bunyan"
@@ -15,7 +15,11 @@
     "splunk",
     "HTTP Event Collector",
     "node-red",
-    "HEC"
+    "HEC",
+    "Machine",
+    "Machine Data",
+    "Analytics",
+    "Machine Learning",
   ],
 
   "node-red" : {
