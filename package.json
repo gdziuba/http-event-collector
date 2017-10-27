@@ -1,11 +1,10 @@
 {
   "name": "node-red-contrib-http-event-collector",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
 	  "splunk-bunyan-logger": "splunk/splunk-bunyan-logger",
 	  "bunyan": "trentm/node-bunyan"
   },
-	
   "repository": {
     "type": "git",
     "url": "https://github.com/gdziuba/http-event-collector.git"
