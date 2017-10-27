@@ -5,6 +5,18 @@
 	  "splunk-bunyan-logger": "splunk/splunk-bunyan-logger",
 	  "bunyan": "trentm/node-bunyan"
   },
+	
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gdziuba/http-event-collector.git"
+  },
+  "license": "Apache-2.0",
+  "keywords": [
+    "splunk",
+    "HTTP Event Collector",
+    "node-red",
+    "HEC"
+  ],
 
   "node-red" : {
     "nodes": {
