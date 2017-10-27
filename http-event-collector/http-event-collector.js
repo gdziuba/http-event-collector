@@ -71,7 +71,7 @@ module.exports = function(RED) {
             delete payload.message.msgMetaData.payload;
 
             console.log("Sending payload", payload);
-            Logger.info(payload, "Data from Node-RED HTTP Event Collector");
+            Logger.info(payload);
 
 
         });
