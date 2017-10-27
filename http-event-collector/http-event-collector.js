@@ -54,9 +54,8 @@ module.exports = function(RED) {
 
             var payload = {
                 // Data sent from previous node msg.payload
-                data : { payload: myMessage,
-                    msgMetaData : msg
-                },
+                payload: myMessage,
+                msgMetaData : msg
                 // Metadata
                 metadata: {
                     source: this.mySource,
@@ -68,7 +67,7 @@ module.exports = function(RED) {
                 severity: "info"
             };
 
-            delete payload.data.msgMetaData.payload;
+            delete payload.msgMetaData.payload;
 
             console.log("Sending payload", payload);
             Logger.info(payload, "");
