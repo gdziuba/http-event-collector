@@ -30,7 +30,7 @@ module.exports = function(RED) {
 
         // Note: splunkStream must be set to an element in the streams array
         var Logger = bunyan.createLogger({
-            name: "my logger",
+            name: "Node-RED Logger",
             streams: [
                 splunkStream
             ]
