@@ -69,10 +69,9 @@ module.exports = function(RED) {
             };
 
             delete payload.message.msgMetaData.payload;
-            delete payload.msg;
 
             console.log("Sending payload", payload);
-            Logger.info(payload);
+            Logger.info(payload, "");
 
 
         });
