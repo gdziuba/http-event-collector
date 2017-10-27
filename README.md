@@ -27,7 +27,5 @@ npm install
 ## Setup
 Navigate to your node-red instance and add the http-event-collector node.  Double click to edit the node parameters.
 
-//Add picture here
-
-
+[Example configuration](https://i.imgur.com/9noXzGI.png)
 
