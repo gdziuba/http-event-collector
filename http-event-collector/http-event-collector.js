@@ -54,7 +54,7 @@ module.exports = function(RED) {
 
             var payload = {
                 // Data sent from previous node msg.payload
-                message : { payload: myMessage,
+                data : { payload: myMessage,
                     msgMetaData : msg
                 },
                 // Metadata
