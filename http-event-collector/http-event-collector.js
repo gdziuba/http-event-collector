@@ -30,7 +30,7 @@ module.exports = function(RED) {
 
         // Note: splunkStream must be set to an element in the streams array
         var Logger = bunyan.createLogger({
-            name: "my logger",
+            name: "Node-RED-Logger",
             streams: [
                 splunkStream
             ]
@@ -54,24 +54,22 @@ module.exports = function(RED) {
 
             var payload = {
                 // Data sent from previous node msg.payload
-                message : { payload: myMessage,
-                    msgMetaData : msg
-                },
+                payload: myMessage,                
+                msgMetaData : msg,
                 // Metadata
-                metadata: {
-                    source: this.mySource,
-                    sourcetype: this.mySourcetype,
-                    index: this.myIndex,
-                    host: this.myHost
-                },
+                source: this.mySource,
+                sourcetype: this.mySourcetype,
+                index: this.myIndex,
+                host: this.myHost,
+                
                 // Severity is also optional
                 severity: "info"
             };
 
-            delete payload.message.msgMetaData.payload;
+            delete payload.msgMetaData.payload;
 
             console.log("Sending payload", payload);
-            Logger.info(payload, "Data from Node-RED HTTP Event Collector");
+            Logger.info(payload, "");
 
 
         });
