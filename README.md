@@ -12,7 +12,7 @@ Wanted to make an easy avenue to publish data into Splunk through Node-Red.
 ## Installation
 
 ```sh
-npm install -g http-event-collector
+npm install -g node-red-contrib-http-event-collector
 ```
 From github:
 Navigate to the your home directory on linux is is ~/.node-red/node-modules
