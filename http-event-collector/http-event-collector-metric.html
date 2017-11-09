@@ -1,49 +1,39 @@
 <script type="text/javascript">
-    RED.nodes.registerType('http-event-collector',{
+    RED.nodes.registerType('http-event-collector-metric',{
         category: 'output',
         color: '#009D2F',
         defaults: {
             name: {value:""},
-            inputURI: {value:"", required:true},
             inputToken: {value:"", required:true},
-            inputSourcetype: {value:"", required:true},
-            inputHost: {value:"", required:false},
-            inputIndex: {value:"", required:true},
-            inputSource: {value:"", required:true}
+            inputHostname: {value:"", required:false},
+            inputSource: {value:"", required:true},
+            inputPort: {value:"", required:true}
         },
         inputs:1,
         outputs:0,
         icon: "Splunk_Icon.png",
         label: function() {
-            return this.name||"http-event-collector";
+            return this.name||"http-event-collector-metric";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="http-event-collector">
+<script type="text/x-red" data-template-name="http-event-collector-metric">
     <div class="form-row">
-        <label for="node-input-inputURI"><i class="fa fa-globe"></i> URI</label>
-        <input type="text" id="node-input-inputURI" placeholder="https://localhost:8088">
+        <label for="node-input-inputHostname"><i class="fa fa-globe"></i> Host</label>
+        <input type="text" id="node-input-inputHostname" placeholder="localhost">
     </div>
     <div class="form-row">
         <label for="node-input-inputToken"><i class="fa fa-globe"></i> Token</label>
         <input type="text" id="node-input-inputToken" placeholder="Token">
     </div>
     <div class="form-row">
-        <label for="node-input-inputHost"><i class="fa fa-globe"></i> Host</label>
-        <input type="text" id="node-input-inputHost" placeholder="Host">
-    </div>
-    <div class="form-row">
-        <label for="node-input-inputSourcetype"><i class="fa fa-globe"></i> Sourcetype</label>
-        <input type="text" id="node-input-inputSourcetype" placeholder="Sourcetype">
-    </div>
-    <div class="form-row">
-        <label for="node-input-inputIndex"><i class="fa fa-globe"></i> Index</label>
-        <input type="text" id="node-input-inputIndex" placeholder="Index">
-    </div>
-    <div class="form-row">
         <label for="node-input-inputSource"><i class="fa fa-globe"></i> Source</label>
         <input type="text" id="node-input-inputSource" placeholder="Source">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputPort"><i class="fa fa-globe"></i> Port</label>
+        <input type="text" id="node-input-inputPort" placeholder="Port">
     </div>
 </script>
 

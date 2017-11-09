@@ -1,9 +1,8 @@
 {
   "name": "node-red-contrib-http-event-collector",
-  "version": "0.0.6",
+  "version": "0.1.0",
   "dependencies": {
-	  "splunk-bunyan-logger": "splunk/splunk-bunyan-logger",
-	  "bunyan": "trentm/node-bunyan"
+	  "splunk-javascript-logging": "splunk/splunk-javascript-logging"
   },
   "repository": {
     "type": "git",
@@ -23,7 +22,8 @@
 
   "node-red" : {
     "nodes": {
-      "http-event-collector": "http-event-collector/http-event-collector.js"
+      "http-event-collector": "http-event-collector/http-event-collector.js",
+      "http-event-collector-metric": "http-event-collector/http-event-collector-metric.js"
     }
   }
 }

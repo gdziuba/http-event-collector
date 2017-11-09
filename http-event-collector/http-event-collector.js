@@ -1,5 +1,6 @@
-var bunyan = require("bunyan");
-var splunkBunyan = require("splunk-bunyan-logger");
+//var bunyan = require("bunyan");
+//var splunkBunyan = require("splunk-bunyan-logger");
+var SplunkLogger = require("splunk-logging").Logger;
 
 
 module.exports = function(RED) {
@@ -26,23 +27,18 @@ module.exports = function(RED) {
             url: this.myURI
         };
 
-        var splunkStream = splunkBunyan.createStream(config);
-
-        // Note: splunkStream must be set to an element in the streams array
-        var Logger = bunyan.createLogger({
-            name: "Node-RED-Logger",
-            streams: [
-                splunkStream
-            ]
-        });
-
-        Logger.error = function(err, context) {
-            // Handle errors here
-            console.log("error", err, "context", context);
-        };
 
 
         this.on('input', function(msg) {
+
+            // Create a new logger
+            var Logger = new SplunkLogger(config);
+            
+            Logger.error = function(err, context) {
+                // Handle errors here
+                console.log("error", err, "context", context);
+            };
+
 
             // Attempt to convert msg.payload to a json structure.
             try{
@@ -54,22 +50,27 @@ module.exports = function(RED) {
 
             var payload = {
                 // Data sent from previous node msg.payload
-                payload: myMessage,                
-                msgMetaData : msg,
+                message: myMessage,                
+                //msgMetaData : msg,
                 // Metadata
-                source: this.mySource,
-                sourcetype: this.mySourcetype,
-                index: this.myIndex,
-                host: this.myHost,
-                
-                // Severity is also optional
+                    metadata: {
+                        source: this.mySource,
+                        sourcetype: this.mySourcetype,
+                        index: this.myIndex,
+                        host: this.myHost,
+                    },
+                    // Severity is also optional
                 severity: "info"
+            
             };
 
-            delete payload.msgMetaData.payload;
+            
 
             console.log("Sending payload", payload);
-            Logger.info(payload, "");
+            Logger.send(payload, function(err, resp, body) {
+                // If successful, body will be { text: 'Success', code: 0 }
+                console.log("Response from Splunk", body);
+            });
 
 
         });
