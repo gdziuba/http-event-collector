@@ -11,19 +11,10 @@ module.exports = function(RED) {
         var myMessage = null;
 
 
-
-        /**
-         * Only the token property is required.
-         */
         this.myToken = config.inputToken.toString();
         this.myHostname = config.inputHostname.toString();
         this.mySource = config.inputSource.toString();
         this.myPort = config.inputPort.toString();
-
-        //var splunkStream = splunkBunyan.createStream(config);
-
-        // Create a new logger
-
 
 
         this.on('input', function(msg) {
@@ -72,6 +63,11 @@ module.exports = function(RED) {
                 
             console.log("postData:",postData);
 
+            // concant Authorization for "Splunk" to Token
+            var SplunkString = "Splunk ";
+            var Token = this.myToken.toString();
+            var AuthorizationString = SplunkString.concat(Token);
+
             var options = {
                 hostname: this.myHostname,
                 port: this.myPort,
@@ -79,7 +75,7 @@ module.exports = function(RED) {
                 path: "/services/collector",
                 method: 'POST',
                 headers: {
-                    Authorization: 'Splunk 5e5f1c02-4471-4218-b7ab-1785921f7993'
+                    Authorization: AuthorizationString
                     //'Content-Length': Buffer.byteLength(postData)
                 }
             };
@@ -100,11 +96,16 @@ module.exports = function(RED) {
             req.on('error', (e) => {
                 console.error(e);
             });
-            // write data to request body
-            req.write(postData);
-            req.end();
-                      
-
+            
+            // write data to request body and make sure the _value is valid
+            if (isNaN(_TemplateStructure.fields._value) === false && _TemplateStructure.fields._value != null 
+                    && typeof(_TemplateStructure.fields._value) != "boolean"){
+                req.write(postData);
+                req.end();
+            }
+            else {
+                console.log("msg.event._value is not a number");
+            }
 
         });
     }
