@@ -31,7 +31,10 @@ npm install
 
 [Example Node-RED configuration](https://i.imgur.com/9noXzGI.png)
 
-### Example Node-RED Functions for converting msg to correct structure for Metric Event Collector. 
+
+## Examples:
+
+### Node-RED Functions for converting msg to correct structure for Metric Event Collector. 
 
 #### Single value MQTT payload message to Metric structure:
 ```sh
