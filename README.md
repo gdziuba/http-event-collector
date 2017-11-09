@@ -31,3 +31,16 @@ npm install
 
 [Example Node-RED configuration](https://i.imgur.com/9noXzGI.png)
 
+### Example Node-RED Functions for converting msg to correct structure for Metric Event Collector. 
+
+#### Single value MQTT payload message to Metric structure:
+```sh
+var o = msg.payload;
+var v = msg.topic;
+msg.payload = {};
+msg.payload.fields = {};
+msg.payload.fields._value = o;
+msg.payload.fields.metric_name= v;
+return msg;
+```
+
