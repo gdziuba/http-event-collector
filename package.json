@@ -1,8 +1,8 @@
 {
   "name": "node-red-contrib-http-event-collector",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "dependencies": {
-	  "splunk-logging": "splunk/splunk-javascript-logging"
+	  "splunk-logging": "git+ssh://git@github.com:splunk/splunk-javascript-logging.git"
   },
   "repository": {
     "type": "git",
