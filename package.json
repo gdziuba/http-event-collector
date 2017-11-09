@@ -22,7 +22,8 @@
 
   "node-red" : {
     "nodes": {
-      "http-event-collector": "http-event-collector/http-event-collector.js"
+      "http-event-collector": "http-event-collector/http-event-collector.js",
+      "http-event-collector-metric": "http-event-collector/http-event-collector-metric.js"
     }
   }
 }
