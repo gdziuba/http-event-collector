@@ -15,17 +15,10 @@ module.exports = function(RED) {
         /**
          * Only the token property is required.
          */
-        this.myURI = config.inputURI.toString();
         this.myToken = config.inputToken.toString();
-        this.mySourcetype = config.inputSourcetype.toString();
-        this.myHost = config.inputHost.toString();
+        this.myHostname = config.inputHostname.toString();
         this.mySource = config.inputSource.toString();
-        this.myIndex = config.inputIndex.toString();
-
-        var config = {
-            token: this.myToken,
-            url: this.myURI
-        };
+        this.myPort = config.inputPort.toString();
 
         //var splunkStream = splunkBunyan.createStream(config);
 
@@ -35,21 +28,53 @@ module.exports = function(RED) {
 
         this.on('input', function(msg) {
 
+            var dims = null;
+
             try{
                 myMessage = JSON.parse(msg.payload)
             }
             catch(err){
-                myMessage = msg.payload
+                myMessage = msg.payload;
+                console.log("payload isn't json or has already converted");
+            }
+        
+            if (myMessage.Splunkdims != null){
+                dims = myMessage.fields.Splunkdims
             }
 
-            var postData = JSON.stringify(myMessage);
-            //var postData = '{"time": 1510200032.000,"event":"metric","source":"disk","host":"host_99","fields":{"region":"us-west-1","datacenter":"us-west-1a","rack":"63","os":"Ubuntu16.10","arch":"x64","team":"LON","service":"6","service_version":"0","service_environment":"test","path":"/dev/sda1","fstype":"ext3","_value":1099511627776,"metric_name":"total"}}';
+            // while (myMessage.fields.hasChildNodes()){
+            //     myMessage.fields.removeChild(myMessage.fields.lastChild);
+            // }
+
+            // Build New Structure
+            var _TemplateStructure = {
+                time: Date.now(),
+                event: "metric",
+                source: this.mySource,
+                host: this.myHostname,
+                fields:{
+                    metric_name: myMessage.fields.metric_name,
+                    _value: myMessage.fields._value,
+                }
+            }
+            if (myMessage.fields.Splunkdims != null){
+                _TemplateStructure.fields = Object.assign(myMessage.fields);
+            }
+
+            if (myMessage.host != null){
+                _TemplateStructure.host = myMessage.host;
+            }
+            if (myMessage.time != null){
+                _TemplateStructure.time = myMessage.time;
+            }
+
+            var postData = JSON.stringify(_TemplateStructure);
                 
             console.log("postData:",postData);
 
             var options = {
-                hostname: "ec2-54-85-94-34.compute-1.amazonaws.com",
-                port: 8088,
+                hostname: this.myHostname,
+                port: this.myPort,
                 protocol: "https:",
                 path: "/services/collector",
                 method: 'POST',
