@@ -61,7 +61,7 @@ module.exports = function(RED) {
 
             var postData = JSON.stringify(_TemplateStructure);
                 
-            console.log("postData:",postData);
+            //console.log("postData:",postData);
 
             // concant Authorization for "Splunk" to Token
             var SplunkString = "Splunk ";
@@ -79,19 +79,18 @@ module.exports = function(RED) {
                     //'Content-Length': Buffer.byteLength(postData)
                 }
             };
-            console.log("headers:", options.headers);
+            //console.log("headers:", options.headers);
 
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
               
             var req = https.request(options, (res) => {
-                console.log('statusCode:', res.statusCode);
-                console.log('headers:', res.headers);
+                //console.log('statusCode:', res.statusCode);
+                //console.log('headers:', res.headers);
               
                 res.on('data', (d) => {
                     process.stdout.write(d);
                 });
             });
-            //console.log("req", req);
               
             req.on('error', (e) => {
                 console.error(e);
