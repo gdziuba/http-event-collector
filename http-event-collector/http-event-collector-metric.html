@@ -5,8 +5,8 @@
         defaults: {
             name: {value:""},
             inputToken: {value:"", required:true},
-            inputHostname: {value:"", required:false},
-            inputSource: {value:"", required:true},
+            inputHostname: {value:"", required:true},
+            inputSource: {value:"", required:false},
             inputPort: {value:"", required:true}
         },
         inputs:1,
@@ -37,17 +37,30 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="http-event-collector">
-    <p>This node pushes data to Splunk's HTTP event collector. Configure a new data source within Splunk's interface
-    under settings> data inputs> Http Event Collector. Either create a new source or use an existing.  Once finished
-    setting up the source, you will receive a Token.  This token will be added to the node settings within the node-red
-    UI. The next step in setting up your HTTP Event Collector, is to make sure that the Global setting are correct.  In
-    the top right hand corner of the Splunk UI, while in the Http Event Collector Configurator, there is a Global
-    settings button.
-    Ensure "All Tokens" is enabled and that the "Enable SSL" button is checked.  Also take note of the HTTP Port Number,
-    This will be used later.  Now go back to the Node-Red UI and add the "http event collector" node and double click
-    to open settings. Paste the Token from Splunk into the Token's field and enter in the URI, ensuring to include
-    "https://" Now add your ip or host name. Finally add the port, which will typically be "8088", but can be manually
-     changed by noting HTTP Port Number in the Global Settings of the Http Event collector configuration page.<br/>
+<script type="text/x-red" data-help-name="http-event-collector-metric">
+    <p>Data to Splunk metrics index needs follow the following structure.<br>
+            {<br>&nbsp;
+                "msg": {<br>&nbsp;&nbsp;
+                    "time": 1486683865.000, // optional will default to current epoch time unless <br>&nbsp;&nbsp;&nbsp;&nbsp;
+                    "event": "metric", // filled in automatically<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                    "source": "disk",  //optional<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                    "host": "host_99", //optional<br>&nbsp;&nbsp;&nbsp;&nbsp;
+                    "fields": {<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "region": "us-west-1",  // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "datacenter": "us-west-1a", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "rack": "63", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "os": "Ubuntu16.10", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "arch": "x64",      // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "team": "LON",      // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "service": "6",     // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "service_version": "0", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "service_environment": "test", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "path": "/dev/sda1", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "fstype": "ext3", // example dimension<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "_value": 1099511627776,  // ** Required **<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        "metric_name": "total"  // ** Required **<br>&nbsp;&nbsp;&nbsp;
+                    }<br>&nbsp;&nbsp;
+                }<br>&nbsp;
+            }<br/>
     </p>
 </script>
