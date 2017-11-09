@@ -42,10 +42,10 @@ module.exports = function(RED) {
 
             // Attempt to convert msg.payload to a json structure.
             try{
-                myMessage = JSON.parse(msg.payload)
+                myMessage = JSON.parse(msg)
             }
             catch(err){
-                myMessage = msg.payload
+                myMessage = msg
             }
 
             var payload = {
