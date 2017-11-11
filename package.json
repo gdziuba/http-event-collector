@@ -23,7 +23,8 @@
   "node-red" : {
     "nodes": {
       "http-event-collector": "http-event-collector/http-event-collector.js",
-      "http-event-collector-metric": "http-event-collector/http-event-collector-metric.js"
+      "http-event-collector-metric": "http-event-collector/http-event-collector-metric.js",
+      "kepware-iot-gatway-to-hec-metric": "http-event-collector/kepware-iot-gatway-to-hec-metric.js"
     }
   }
 }
