@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('kepware-iot-gatway-to-hec-metric',{
+    RED.nodes.registerType('kepware-iot-gateway-to-splunk-metric',{
         category: 'output',
         color: '#009D2F',
         defaults: {
@@ -13,12 +13,12 @@
         outputs:0,
         icon: "Splunk_Icon.png",
         label: function() {
-            return this.name||"kepware-iot-gatway-to-hec-metric";
+            return this.name||"kepware-iot-gateway-to-splunk-metric";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="kepware-iot-gatway-to-hec-metric">
+<script type="text/x-red" data-template-name="kepware-iot-gateway-to-splunk-metric">
     <div class="form-row">
         <label for="node-input-inputHostname"><i class="fa fa-globe"></i> Host</label>
         <input type="text" id="node-input-inputHostname" placeholder="localhost">
@@ -37,7 +37,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="kepware-iot-gatway-to-hec-metric">
+<script type="text/x-red" data-help-name="kepware-iot-gateway-to-splunk-metric">
     <p>Indexes Kepware's MQTT iot gateway data via Splunk's HTTP Event Collector.<br>
         Kepware's IoT Gateway MQTT message format must be "Standard Template." <br/>
     </p>

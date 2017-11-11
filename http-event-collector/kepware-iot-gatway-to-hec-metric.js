@@ -157,5 +157,5 @@ module.exports = function(RED) {
 
         });
     }
-    RED.nodes.registerType("kepware-iot-gatway-to-hec-metric",HTTPEventCollector);
+    RED.nodes.registerType("kepware-iot-gateway-to-splunk-metric",HTTPEventCollector);
 };

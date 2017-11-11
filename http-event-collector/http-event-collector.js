@@ -75,5 +75,5 @@ module.exports = function(RED) {
 
         });
     }
-    RED.nodes.registerType("http-event-collector",HTTPEventCollector);
+    RED.nodes.registerType("splunk-http-event-collector",HTTPEventCollector);
 };
