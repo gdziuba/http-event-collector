@@ -1,5 +1,4 @@
-//var bunyan = require("bunyan");
-//var splunkBunyan = require("splunk-bunyan-logger");
+
 var SplunkLogger = require("splunk-logging").Logger;
 
 

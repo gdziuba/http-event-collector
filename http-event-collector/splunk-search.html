@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    RED.nodes.registerType('splunk-search',{
+        category: 'input',
+        color: '#009D2F',
+        defaults: {
+            name: {value:""},
+            inputHost: {value:"", required:true},
+            inputPort: {value:"", required:true}, 
+            inputSearch: {value:"", required:true},
+            inputUsername: {value:"", required:true},
+            inputPassword: {value:"", required:true},
+            inputVersion: {value:"", required:true}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "Splunk_Icon.png",
+        label: function() {
+            return this.name||"splunk-search";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="splunk-search">
+    <div class="form-row">
+        <label for="node-input-inputHost"><i class="fa fa-globe"></i> Host</label>
+        <input type="text" id="node-input-inputHost" placeholder="Host">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputPort"><i class="fa fa-globe"></i> Port</label>
+        <input type="text" id="node-input-inputPort" placeholder="Port">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputSearch"><i class="fa fa-globe"></i> Search</label>
+        <input type="text" id="node-input-inputSearch" placeholder="Search">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputUsername"><i class="fa fa-globe"></i> Username</label>
+        <input type="text" id="node-input-inputUsername" placeholder="Username">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputPassword"><i class="fa fa-globe"></i> Password</label>
+        <input type="password" id="node-input-inputPassword" placeholder="Password">
+    </div>
+    <div class="form-row">
+        <label for="node-input-inputVersion"><i class="fa fa-globe"></i> Version</label>
+        <input type="text" id="node-input-inputVersion" placeholder="Splunk Version 7.0">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="splunk-search">
+    <p>This node pushes data to Splunk's HTTP event collector. Configure a new data source within Splunk's interface
+    under settings> data inputs> Http Event Collector. Either create a new source or use an existing.  Once finished
+    setting up the source, you will receive a Token.  This token will be added to the node settings within the node-red
+    UI. The next step in setting up your HTTP Event Collector, is to make sure that the Global setting are correct.  In
+    the top right hand corner of the Splunk UI, while in the Http Event Collector Configurator, there is a Global
+    settings button.
+    Ensure "All Tokens" is enabled and that the "Enable SSL" button is checked.  Also take note of the HTTP Port Number,
+    This will be used later.  Now go back to the Node-Red UI and add the "http event collector" node and double click
+    to open settings. Paste the Token from Splunk into the Token's field and enter in the URI, ensuring to include
+    "https://" Now add your ip or host name. Finally add the port, which will typically be "8088", but can be manually
+     changed by noting HTTP Port Number in the Global Settings of the Http Event collector configuration page.<br/>
+    </p>
+</script>

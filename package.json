@@ -1,8 +1,9 @@
 {
   "name": "node-red-contrib-http-event-collector",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "dependencies": {
-	  "splunk-logging": "git+https://github.com/splunk/splunk-javascript-logging.git"
+    "splunk-logging": "git+https://github.com/splunk/splunk-javascript-logging.git",
+    "splunk-sdk" : "git+https://github.com/splunk/splunk-sdk-javascript.git"
   },
   "repository": {
     "type": "git",
@@ -24,7 +25,8 @@
     "nodes": {
       "splunk-http-event-collector": "http-event-collector/http-event-collector.js",
       "splunk-http-event-collector-metric": "http-event-collector/http-event-collector-metric.js",
-      "kepware-iot-gateway-to-splunk-metric": "http-event-collector/kepware-iot-gatway-to-hec-metric.js"
+      "kepware-iot-gateway-to-splunk-metric": "http-event-collector/kepware-iot-gatway-to-hec-metric.js",
+      "splunk-search": "http-event-collector/splunk-search.js"
     }
   }
 }
