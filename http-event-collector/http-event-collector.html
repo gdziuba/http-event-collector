@@ -1,5 +1,5 @@
 <script type="text/javascript">
-    RED.nodes.registerType('http-event-collector',{
+    RED.nodes.registerType('splunk-http-event-collector',{
         category: 'output',
         color: '#009D2F',
         defaults: {
@@ -15,12 +15,12 @@
         outputs:0,
         icon: "Splunk_Icon.png",
         label: function() {
-            return this.name||"http-event-collector";
+            return this.name||"splunk-http-event-collector";
         }
     });
 </script>
 
-<script type="text/x-red" data-template-name="http-event-collector">
+<script type="text/x-red" data-template-name="splunk-http-event-collector">
     <div class="form-row">
         <label for="node-input-inputURI"><i class="fa fa-globe"></i> URI</label>
         <input type="text" id="node-input-inputURI" placeholder="https://localhost:8088">
@@ -47,7 +47,7 @@
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="http-event-collector">
+<script type="text/x-red" data-help-name="splunk-http-event-collector">
     <p>This node pushes data to Splunk's HTTP event collector. Configure a new data source within Splunk's interface
     under settings> data inputs> Http Event Collector. Either create a new source or use an existing.  Once finished
     setting up the source, you will receive a Token.  This token will be added to the node settings within the node-red

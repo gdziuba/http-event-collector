@@ -1,6 +1,5 @@
 var https = require("https");
 const querystring = require('querystring');    
-//var request = require("request");
 
 
 module.exports = function(RED) {
@@ -20,6 +19,12 @@ module.exports = function(RED) {
         this.on('input', function(msg) {
 
             var dims = null;
+            var hName = this.myHostname
+            var re = /(https:\/\/|http:\/\/)/;
+            hName = hName.replace(re,'');
+            re = /(www)/;
+            hName = hName.replace(re,'');
+            console.log("hostname:",hName)
 
             try{
                 myMessage = JSON.parse(msg.payload)
@@ -42,7 +47,7 @@ module.exports = function(RED) {
                 time: Date.now(),
                 event: "metric",
                 source: this.mySource,
-                host: this.myHostname,
+                host: hName,
                 fields:{
                     metric_name: myMessage.fields.metric_name,
                     _value: myMessage.fields._value,
@@ -69,7 +74,7 @@ module.exports = function(RED) {
             var AuthorizationString = SplunkString.concat(Token);
 
             var options = {
-                hostname: this.myHostname,
+                hostname: hName,
                 port: this.myPort,
                 protocol: "https:",
                 path: "/services/collector",
@@ -89,6 +94,7 @@ module.exports = function(RED) {
               
                 res.on('data', (d) => {
                     process.stdout.write(d);
+                    console.log('\n');
                 });
             });
               
@@ -108,5 +114,5 @@ module.exports = function(RED) {
 
         });
     }
-    RED.nodes.registerType("http-event-collector-metric",HTTPEventCollector);
+    RED.nodes.registerType("splunk-http-event-collector-metric",HTTPEventCollector);
 };

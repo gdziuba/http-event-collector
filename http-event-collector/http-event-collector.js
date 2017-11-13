@@ -1,5 +1,3 @@
-//var bunyan = require("bunyan");
-//var splunkBunyan = require("splunk-bunyan-logger");
 var SplunkLogger = require("splunk-logging").Logger;
 
 
@@ -75,5 +73,5 @@ module.exports = function(RED) {
 
         });
     }
-    RED.nodes.registerType("http-event-collector",HTTPEventCollector);
+    RED.nodes.registerType("splunk-http-event-collector",HTTPEventCollector);
 };
