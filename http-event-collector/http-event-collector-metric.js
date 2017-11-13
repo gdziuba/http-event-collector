@@ -1,6 +1,5 @@
 var https = require("https");
 const querystring = require('querystring');    
-//var request = require("request");
 
 
 module.exports = function(RED) {

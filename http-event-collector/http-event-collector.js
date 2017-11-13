@@ -1,4 +1,3 @@
-
 var SplunkLogger = require("splunk-logging").Logger;
 
 
