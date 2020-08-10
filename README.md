@@ -47,3 +47,15 @@ msg.payload.fields.metric_name= v;
 return msg;
 ```
 
+#### Single value with dimensions enabled :
+```sh
+var o = msg.payload;
+var v = msg.topic;
+msg.payload = {};
+msg.payload.splunkdims = true;
+msg.payload.fields = {};
+msg.payload.fields._value = o;
+msg.payload.fields.metric_name= v;
+msg.payload.fields.dimension1= "value1";
+return msg;
+```
