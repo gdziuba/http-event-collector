@@ -21,6 +21,7 @@
   ],
   "node-red": {
     "nodes": {
+      "splunk-http-event-config": "http-event-collector/http-event-config.js",
       "splunk-http-event-collector": "http-event-collector/http-event-collector.js",
       "splunk-http-event-collector-metric": "http-event-collector/http-event-collector-metric.js"
     }
