@@ -13,13 +13,13 @@ The easiest way to install is through the Node-Red Palette Manager that can be f
 ### Manual install with npm
 
 ```sh
-npm install -g node-red-contrib-http-event-collector
+npm install -g @rxc3ntr1c/node-red-contrib-http-event-collector
 ```
 ### Install from source
 From github:
 Navigate to the your home directory on linux is is ~/.node-red/node-modules
 ```sh
-git clone https://github.com/gdziuba/http-event-collector.git
+git clone https://github.com/rXc3NtR1c/http-event-collector
 ```
 ```sh
 cd http-event-collector

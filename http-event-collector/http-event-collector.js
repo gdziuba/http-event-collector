@@ -4,10 +4,10 @@ var SplunkLogger = require("splunk-logging").Logger;
 module.exports = function(RED) {
     function HTTPEventCollector(config) {
         RED.nodes.createNode(this,config);
+
         var context = this.context();
-
-        this.server = RED.nodes.getNode(config.server);
-
+        var node = this
+        var server = RED.nodes.getNode(config.server);
         var message = null;
 
 
@@ -15,17 +15,20 @@ module.exports = function(RED) {
         /**
          * Only the token property is required.
          */
-        this.URI = this.server.Input;
-        this.Token = this.server.Token;
-        this.SourceType = this.server.SourceType;
-        this.Host = (config.Host.toString() != "") ? config.Host.toString() : this.server.Host;
-        this.Source = (config.Source.toString() != "") ? config.Source.toString() : this.server.Source;
-        this.Index = (config.Index.toString() != "") ? config.Index.toString() : this.server.Index;
+        this.SourceType = server.SourceType;
+        this.Host = (config.Host.toString() != "") ? config.Host.toString() : server.Host;
+        this.Source = (config.Source.toString() != "") ? config.Source.toString() : server.Source;
+        this.Index = (config.Index.toString() != "") ? config.Index.toString() : server.Index;
+
+        var splunkConfig = {
+            token: server.Token,
+            url: server.URI
+        };
 
         this.on('input', function(msg) {
 
             // Create a new logger
-            var Logger = new SplunkLogger(config);
+            var Logger = new SplunkLogger(splunkConfig);
             
             Logger.error = function(err, context) {
                 // Handle errors here
