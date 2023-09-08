@@ -34,14 +34,6 @@ module.exports = function(RED) {
                 console.log("payload isn't json or has already converted");
             }
         
-            if (myMessage.Splunkdims != null){
-                dims = myMessage.fields.Splunkdims
-            }
-
-            // while (myMessage.fields.hasChildNodes()){
-            //     myMessage.fields.removeChild(myMessage.fields.lastChild);
-            // }
-
             // Build New Structure
             var _TemplateStructure = {
                 time: Date.now(),
@@ -53,7 +45,7 @@ module.exports = function(RED) {
                     _value: myMessage.fields._value,
                 }
             }
-            if (myMessage.fields.Splunkdims != null){
+            if (myMessage.splunkdims != null){
                 _TemplateStructure.fields = Object.assign(myMessage.fields);
             }
 
