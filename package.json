@@ -1,8 +1,8 @@
 {
   "name": "node-red-contrib-http-event-collector",
-  "version": "0.3.0",
+  "version": "1.1.0",
   "dependencies": {
-    "splunk-logging": "splunk/splunk-javascript-logging.git"
+    "splunk-logging": "^0.11.1"
   },
   "repository": {
     "type": "git",
@@ -12,17 +12,12 @@
   "keywords": [
     "splunk",
     "HTTP Event Collector",
-    "node-red",
-    "HEC",
-    "Machine",
-    "Machine Data",
-    "Analytics",
-    "Machine Learning"
+    "node-red"
   ],
   "node-red": {
     "nodes": {
-      "splunk-http-event-collector": "http-event-collector/http-event-collector.js",
-      "splunk-http-event-collector-metric": "http-event-collector/http-event-collector-metric.js"
+      "splunk-http-event-config": "http-event-collector/http-event-config.js",
+      "splunk-http-event-collector": "http-event-collector/http-event-collector.js"
     }
   }
 }

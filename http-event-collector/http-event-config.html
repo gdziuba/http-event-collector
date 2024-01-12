@@ -1,0 +1,64 @@
+<script type="text/javascript">
+    RED.nodes.registerType('splunk-http-event-config',{
+        category: 'config',
+        defaults: {
+            URI: {value:"", required:true},
+            Token: {value:"", required:true},
+            SourceType: {value:"", required:true},
+            Host: {value:"", required:false},
+            Index: {value:"", required:true},
+            Source: {value:"", required:true},
+            LogLevel: {value:"", required:true},
+            LogConsole: {value:"", required:true}
+        },
+        label: function() {
+            return "splunk-http-event-config";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="splunk-http-event-config">
+    <div class="form-row">
+        <div style="min-width: 600px;"></div>
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-URI" style="width:150px;">Splunk URI</label>
+        <input type="text" id="node-config-input-URI" placeholder="https://localhost:8088">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-Token" style="width:150px;">Token</label>
+        <input type="text" id="node-config-input-Token" placeholder="Token">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-Host" style="width:150px;">Host</label>
+        <input type="text" id="node-config-input-Host" placeholder="Host">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-SourceType" style="width:150px;">Source Type</label>
+        <input type="text" id="node-config-input-SourceType" placeholder="_json">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-Index" style="width:150px;">Index</label>
+        <input type="text" id="node-config-input-Index" placeholder="Index">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-Source" style="width:150px;">Source</label>
+        <input type="text" id="node-config-input-Source" placeholder="Source">
+    </div>
+    <div class="form-row">
+        <label for="node-config-input-LogLevel" style="width:150px;">Default Log Level</label>
+        <input type="text" id="node-config-input-LogLevel" placeholder="info">
+    </div>
+    <div class="form-row">
+        <input type="checkbox" id="node-config-input-LogConsole" style="display: inline-block; width: auto; vertical-align: top;" autocomplete="off">
+        <label for="node-config-input-LogConsole" style="width:70%;margin-left:15px;">Console Logging</label>
+
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="splunk-http-event-config">
+    <p>
+        This node is a configuration node for the HTTP Event Collector and defines the defaults. Some of these can also be overridden in the event collector 
+        node itself if you need to push to a different index inside the flow.
+    </p>
+</script>
