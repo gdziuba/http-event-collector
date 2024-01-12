@@ -27,7 +27,7 @@ npm install
 ```
 
 ## Setup
-[To configure Splunk's HTTP Event Collector, follow these instructions.](http://docs.splunk.com/Documentation/SplunkCloud/6.6.3/Data/UsetheHTTPEventCollector#Configure_HTTP_Event_Collector_on_Splunk_Enterprise)
+[To configure Splunk's HTTP Event Collector, follow these instructions.](https://docs.splunk.com/Documentation/Splunk/9.1.2/Data/UsetheHTTPEventCollector)
 
 [Example Node-RED configuration](https://i.imgur.com/9noXzGI.png)
 
