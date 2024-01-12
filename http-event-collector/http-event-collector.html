@@ -4,12 +4,10 @@
         color: '#009D2F',
         defaults: {
             name: {value:""},
-            inputURI: {value:"", required:true},
-            inputToken: {value:"", required:true},
-            inputSourcetype: {value:"", required:true},
-            inputHost: {value:"", required:false},
-            inputIndex: {value:"", required:true},
-            inputSource: {value:"", required:true}
+            server: {value:"", type:"splunk-http-event-config"},
+            Host: {value:"", required:false},
+            Index: {value:"", required:false},
+            Source: {value:"", required:false}
         },
         inputs:1,
         outputs:0,
@@ -20,34 +18,29 @@
     });
 </script>
 
-<script type="text/x-red" data-template-name="splunk-http-event-collector">
+<script type="text/html" data-template-name="splunk-http-event-collector">
     <div class="form-row">
-        <label for="node-input-inputURI"><i class="fa fa-globe"></i> URI</label>
-        <input type="text" id="node-input-inputURI" placeholder="https://localhost:8088">
+        <div style="min-width: 600px;"></div>
     </div>
     <div class="form-row">
-        <label for="node-input-inputToken"><i class="fa fa-globe"></i> Token</label>
-        <input type="text" id="node-input-inputToken" placeholder="Token">
+        <label for="node-input-server" style="width:150px;">Server</label>
+        <input type="text" id="node-input-server">
     </div>
     <div class="form-row">
-        <label for="node-input-inputHost"><i class="fa fa-globe"></i> Host</label>
-        <input type="text" id="node-input-inputHost" placeholder="Host">
+        <label for="node-input-Host" style="width:150px;">Host</label>
+        <input type="text" id="node-input-Host">
     </div>
     <div class="form-row">
-        <label for="node-input-inputSourcetype"><i class="fa fa-globe"></i> Sourcetype</label>
-        <input type="text" id="node-input-inputSourcetype" placeholder="Sourcetype">
+        <label for="node-input-Index" style="width:150px;">Index</label>
+        <input type="text" id="node-input-Index">
     </div>
     <div class="form-row">
-        <label for="node-input-inputIndex"><i class="fa fa-globe"></i> Index</label>
-        <input type="text" id="node-input-inputIndex" placeholder="Index">
-    </div>
-    <div class="form-row">
-        <label for="node-input-inputSource"><i class="fa fa-globe"></i> Source</label>
-        <input type="text" id="node-input-inputSource" placeholder="Source">
+        <label for="node-input-Source" style="width:150px;">Source</label>
+        <input type="text" id="node-input-Source">
     </div>
 </script>
 
-<script type="text/x-red" data-help-name="splunk-http-event-collector">
+<script type="text/html" data-help-name="splunk-http-event-collector">
     <p>This node pushes data to Splunk's HTTP event collector. Configure a new data source within Splunk's interface
     under settings> data inputs> Http Event Collector. Either create a new source or use an existing.  Once finished
     setting up the source, you will receive a Token.  This token will be added to the node settings within the node-red
